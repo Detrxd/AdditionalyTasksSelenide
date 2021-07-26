@@ -10,7 +10,7 @@ import java.time.Duration;
 import java.util.Calendar;
 
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.withText;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class CardDeliveryTest {
@@ -55,13 +55,11 @@ public class CardDeliveryTest {
         }
         int difference = Integer.parseInt(lastDay) - Integer.parseInt(currentDay);
         if (difference < 4){
-//            $(".calendar__arrow_direction_right").shouldNotBe(cssClass("calendar__arrow_double")).click();
-//            почему этот собака не ищет дальше, тот класс который все-таки без двойной стрелочки...
             $$(".calendar__arrow_direction_right").get(1).click();
-            $(withText(String.valueOf(4-difference))).shouldBe(cssClass("calendar__day")).click();
+            $(byText(String.valueOf(4-difference))).shouldHave(cssClass("calendar__day")).click();
         }else{
             int tmp =Integer.parseInt(currentDay)+4;
-            $(withText(String.valueOf(tmp))).shouldBe(cssClass("calendar__day")).click();
+            $(byText(String.valueOf(tmp))).shouldHave(cssClass("calendar__day")).click();
         }
         form.$("[data-test-id=name] input").setValue("Васин-Красин Василь");
         form.$("[data-test-id=phone] input").setValue("+71234567890");

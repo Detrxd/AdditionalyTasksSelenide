@@ -1,4 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/xb336t1r9mmeojjd?svg=true)](https://ci.appveyor.com/project/Orlov-D/aqa-2-2-1-selenide-data)
+[![Build status](https://ci.appveyor.com/api/projects/status/5gkdh3xkem0r4h0y?svg=true)](https://ci.appveyor.com/project/Orlov-D/aqa-2-2-2-selenide-data-list-and-calendar)
 
 <!--
 java -jar artifacts\app-card-delivery.jar
