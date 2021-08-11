@@ -23,7 +23,7 @@ public class CardDeliveryTest {
     @Test
     public void shouldSubmitRequest() {
         SelenideElement form = $("[method=post]");
-        form.$("[data-test-id=city] input").setValue("Абакан");
+        form.$("[data-test-id=city] input").setValue("Астрахань");
         form.$("[data-test-id=date] input").doubleClick();
         form.$("[data-test-id=date] input").sendKeys(Keys.DELETE);
         Calendar calendar = Calendar.getInstance();
@@ -40,14 +40,14 @@ public class CardDeliveryTest {
     @Test
     public void shouldSubmitRequestByClick() {
         SelenideElement form = $("[method=post]");
-        form.$("[data-test-id=city] input").setValue("во");
-        $$("[class=popup__content] .menu-item__control").get(3).shouldHave(exactText("Вологда")).click();
+        form.$("[data-test-id=city] input").setValue("ас");
+        $$("[class=popup__content] .menu-item__control").get(1).shouldHave(exactText("Астрахань")).click();
 
-        form.$("[data-test-id=date] input").click();
-        String currentDay = $("[class=calendar__layout] .calendar__day_state_current.calendar__day").text();
-        String lastDay = "zero";
-        int size = $$("[class=calendar__layout] .calendar__row .calendar__day").size();
-        for (int i = 0; i < 7; i++) {
+        form.$("[data-test-id=date] input").click(); //кликаем по иконке
+        String currentDay = $("[class=calendar__layout] .calendar__day_state_current.calendar__day").text(); //получаем ближайшую возможную дату брони
+        String lastDay = "zero"; //устанавливаем значение крайнему дню
+        int size = $$("[class=calendar__layout] .calendar__row .calendar__day").size(); // получаем размер(кол-во ячеек) всплывающего компонента - календаря
+        for (int i = 0; i < 7; i++) { //создаем цикл, в котором перебираем значения до момента получения пустоты. Тем самым определим крайнее значение месяца, после которого кликаем на стрелку
             lastDay = $$("[class=calendar__layout] .calendar__row .calendar__day").get(size - 1 - i).text();
             if (!lastDay.equals("")) {
                 break;
@@ -61,7 +61,7 @@ public class CardDeliveryTest {
             int tmp =Integer.parseInt(currentDay)+4;
             $(byText(String.valueOf(tmp))).shouldHave(cssClass("calendar__day")).click();
         }
-        form.$("[data-test-id=name] input").setValue("Васин-Красин Василь");
+        form.$("[data-test-id=name] input").setValue("Филимонов Илья");
         form.$("[data-test-id=phone] input").setValue("+71234567890");
         form.$("[data-test-id=agreement] .checkbox__box").click();
         form.$("[role=button] .button__content").click();
